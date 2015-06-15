@@ -1,0 +1,77 @@
+PODS:
+  - AFNetworking (2.5.0):
+    - AFNetworking/NSURLConnection (= 2.5.0)
+    - AFNetworking/NSURLSession (= 2.5.0)
+    - AFNetworking/Reachability (= 2.5.0)
+    - AFNetworking/Security (= 2.5.0)
+    - AFNetworking/Serialization (= 2.5.0)
+    - AFNetworking/UIKit (= 2.5.0)
+  - AFNetworking/NSURLConnection (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.0)
+  - AFNetworking/Security (2.5.0)
+  - AFNetworking/Serialization (2.5.0)
+  - AFNetworking/UIKit (2.5.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Bolts (1.1.3)
+  - Facebook-iOS-SDK (3.22.0):
+    - Bolts (~> 1.0)
+  - FormatterKit (1.8.0):
+    - FormatterKit/AddressFormatter (= 1.8.0)
+    - FormatterKit/ArrayFormatter (= 1.8.0)
+    - FormatterKit/ColorFormatter (= 1.8.0)
+    - FormatterKit/LocationFormatter (= 1.8.0)
+    - FormatterKit/NameFormatter (= 1.8.0)
+    - FormatterKit/OrdinalNumberFormatter (= 1.8.0)
+    - FormatterKit/TimeIntervalFormatter (= 1.8.0)
+    - FormatterKit/UnitOfInformationFormatter (= 1.8.0)
+    - FormatterKit/URLRequestFormatter (= 1.8.0)
+  - FormatterKit/AddressFormatter (1.8.0)
+  - FormatterKit/ArrayFormatter (1.8.0)
+  - FormatterKit/ColorFormatter (1.8.0)
+  - FormatterKit/LocationFormatter (1.8.0)
+  - FormatterKit/NameFormatter (1.8.0)
+  - FormatterKit/OrdinalNumberFormatter (1.8.0)
+  - FormatterKit/TimeIntervalFormatter (1.8.0)
+  - FormatterKit/UnitOfInformationFormatter (1.8.0)
+  - FormatterKit/URLRequestFormatter (1.8.0)
+  - RNFrostedSidebar (0.2.0)
+  - SlackTextViewController (1.4.1):
+    - SlackTextViewController/Additions (= 1.4.1)
+  - SlackTextViewController/Additions (1.4.1)
+  - SMFBProfileImageView (0.6.0):
+    - AFNetworking (~> 2.3)
+    - Facebook-iOS-SDK (~> 3.22)
+  - socket.IO (0.5.2):
+    - SocketRocket (~> 0.2)
+  - SocketRocket (0.2.0)
+
+DEPENDENCIES:
+  - AFNetworking
+  - Facebook-iOS-SDK
+  - FormatterKit
+  - RNFrostedSidebar
+  - SlackTextViewController
+  - SMFBProfileImageView (= 0.6.0)
+  - socket.IO
+  - SocketRocket
+
+SPEC CHECKSUMS:
+  AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  Bolts: e431c88fd02115d4a34016c2100bbfa4d2d5b146
+  Facebook-iOS-SDK: 141cba3ba6c484380eb38c573110af9e4fbf8962
+  FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
+  RNFrostedSidebar: 9491d8627e5e99b92334d36def432c0faf7ebae4
+  SlackTextViewController: 22142c06d574c7a679631c24b2bab1f9195d31d7
+  SMFBProfileImageView: 1fd3cd43999ca472c38874411901bc7003c84f86
+  socket.IO: eaaaea33481d8a81d8f78e331f0c72ba44758036
+  SocketRocket: 54a4ac2f354c4e8c51ef5dcd4a13bc556d4f2b7c
+
+COCOAPODS: 0.37.1

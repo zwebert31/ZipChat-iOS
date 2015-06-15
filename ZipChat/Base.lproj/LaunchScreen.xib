@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_transparent" translatesAutoresizingMaskIntoConstraints="NO" id="PE4-ry-SLf">
+                    <rect key="frame" x="16" y="111" width="448" height="272"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="272" id="6If-Tv-Opr"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="272" id="shz-qH-v8D"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="shz-qH-v8D"/>
+                        </mask>
+                    </variation>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.33478325682476351" green="0.75990631531883823" blue="0.87432922979797978" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailingMargin" secondItem="PE4-ry-SLf" secondAttribute="trailing" constant="8" id="DQh-VI-V9S"/>
+                <constraint firstAttribute="trailing" secondItem="PE4-ry-SLf" secondAttribute="trailing" id="FS5-g2-n2s"/>
+                <constraint firstAttribute="trailing" secondItem="PE4-ry-SLf" secondAttribute="trailing" id="I6Y-3E-ahL"/>
+                <constraint firstItem="PE4-ry-SLf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" constant="8" id="IbT-Rg-0ig"/>
+                <constraint firstItem="PE4-ry-SLf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KXt-ox-N81"/>
+                <constraint firstItem="PE4-ry-SLf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Pca-Zo-hvK"/>
+                <constraint firstAttribute="centerX" secondItem="PE4-ry-SLf" secondAttribute="centerX" constant="39.5" id="Tc9-U7-34t"/>
+                <constraint firstAttribute="trailing" secondItem="PE4-ry-SLf" secondAttribute="trailing" constant="79" id="XUc-on-Y9T"/>
+                <constraint firstItem="PE4-ry-SLf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="111" id="mQe-fF-wRs"/>
+                <constraint firstItem="PE4-ry-SLf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="n8R-as-RSX"/>
+                <constraint firstAttribute="trailing" secondItem="PE4-ry-SLf" secondAttribute="trailing" id="sSd-83-1RB"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="FS5-g2-n2s"/>
+                    <exclude reference="I6Y-3E-ahL"/>
+                    <exclude reference="KXt-ox-N81"/>
+                    <exclude reference="Pca-Zo-hvK"/>
+                    <exclude reference="Tc9-U7-34t"/>
+                    <exclude reference="XUc-on-Y9T"/>
+                    <exclude reference="n8R-as-RSX"/>
+                    <exclude reference="sSd-83-1RB"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="548" y="377"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo_transparent" width="556" height="313"/>
+    </resources>
+</document>
