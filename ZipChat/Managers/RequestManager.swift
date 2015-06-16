@@ -11,6 +11,7 @@ import UIKit
 private let manager = RequestManager()
 let ChatEndPoint = "join"
 let UsersEndPoint = "users"
+let AuthenticationEndPoint = "auth"
 let PublicRoomsEndPoint = "publicRooms"
 let PrivateRoomsEndPoint = "privateRooms"
 let RoomsEndPoint = "rooms"
@@ -30,6 +31,17 @@ class RequestManager: NSObject {
         return _operationManager!
     }
 
+    func cleanDictionary(dictionary:[String:AnyObject?]) -> [String:AnyObject] {
+        var cleanDictionary = [String:AnyObject]()
+        for (key, optionalValue) in dictionary {
+            if let value: AnyObject = optionalValue
+            where !(value is NSNull) {
+                cleanDictionary[key] = value
+            }
+        }
+        return cleanDictionary
+    }
+    
     func addParameter(dict: NSMutableDictionary, object: AnyObject?, key: String) {
         if let param: AnyObject = object {
             dict[key] = param

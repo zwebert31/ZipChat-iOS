@@ -12,8 +12,7 @@ class User: NSObject {
     var userId: Int!
     var facebookId: Int!
     var name: String!
-    var registrationId: String?
-    var platform: String?
+    var authToken: String?
     
     override init() {}
     
@@ -30,29 +29,54 @@ class User: NSObject {
             self.name = name
         }
         
-        if let registrationId = dictionary["registrationId"] as? String {
-            self.registrationId = registrationId
-        }
-        
-        if let platform = dictionary["platform"] as? String {
-            self.platform = platform
+        if let authToken = dictionary["authToken"] as? String {
+            self.authToken = authToken
         }
     }
     
-    class func createUserWithSuccess(success:((userId: Int)->())?, failure:((error: NSError)->())?) {
-        let clientManager = ClientManager.sharedManager
-        let requestManager = RequestManager.sharedManager
-        var params: NSMutableDictionary = NSMutableDictionary()
-        requestManager.addParameter(params, object: clientManager.user.facebookId, key: "facebookId")
-        requestManager.addParameter(params, object: clientManager.user.name, key: "name")
-        requestManager.addParameter(params, object: clientManager.user.registrationId, key: "registrationId")
-        requestManager.addParameter(params, object: "ios", key: "platform")
+    required init(coder aDecoder: NSCoder) {
+        if let userId = aDecoder.decodeObjectForKey("userId") as? Int {
+            self.userId = userId
+        }
         
-        requestManager.operationManager.POST(UsersEndPoint, parameters: params, success: { (operation, response) -> Void in
-            success?(userId: (response["userId"] as? Int) ?? -1)
-            return
+        if let facebookId = aDecoder.decodeObjectForKey("facebookId") as? Int {
+            self.facebookId = facebookId
+        }
+        
+        if let name = aDecoder.decodeObjectForKey("name") as? String {
+            self.name = name
+        }
+        
+        if let authToken = aDecoder.decodeObjectForKey("authToken") as? String {
+            self.authToken = authToken
+        }
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(userId, forKey: "userId")
+        aCoder.encodeObject(facebookId, forKey: "facebookId")
+        aCoder.encodeObject(name, forKey: "name")
+        aCoder.encodeObject(authToken, forKey: "authToken")
+    }
+    
+    class func createUserWithSuccess(accessToken: String, success:((user:User) -> ())?, failure:((error: NSError)->())?) {
+        let requestManager = RequestManager.sharedManager
+        requestManager.operationManager.PUT(UsersEndPoint, parameters: ["fbAccessToken":accessToken], success: { (operation, response) -> Void in
+            if let userData = response as? [String:AnyObject] {
+                success?(user:User(dictionary:userData))
+            }
+        }) { (operation, error) -> Void in
+            NSLog(error.localizedDescription)
+        }
+    }
+    
+    class func authenticateUserWithSuccess(accessToken: String, success:((authToken: String) -> ())?, failure:((error: NSError)->())?) {
+        let requestManager = RequestManager.sharedManager
+        requestManager.operationManager.GET(AuthenticationEndPoint, parameters: ["fbAccessToken":accessToken], success: { (operation, response) -> Void in
+            if let token = response["authToken"] as? String {
+                success?(authToken: token)
+            }
             }) { (operation, error) -> Void in
-                failure?(error: error)
                 NSLog(error.localizedDescription)
         }
     }

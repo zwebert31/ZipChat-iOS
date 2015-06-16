@@ -23,7 +23,24 @@ class ClientManager: NSObject {
         }
     }
     
-    var user = User()
+    var user: User? {
+        didSet {
+            self.saveUser()
+        }
+    }
+    
+    func loadUser() {
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("user") as? NSData {
+            let unarc = NSKeyedUnarchiver(forReadingWithData: data)
+            self.user = unarc.decodeObjectForKey("root") as? User
+        }
+    }
+    
+    func saveUser() {
+        if let user = self.user {
+            NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(user), forKey: "user")
+        }
+    }
     
     class var sharedManager: ClientManager {
         return manager

@@ -26,7 +26,7 @@ class MyChatsController: UITableViewController, TabController {
     //MARK: - Rooms
     func updateRooms() {
         let clientManager = ClientManager.sharedManager
-        PrivateRoom.getRooms(clientManager.user.userId, success: { (rooms) -> () in
+        PrivateRoom.getRooms(clientManager.user!.userId, success: { (rooms) -> () in
             self.rooms = rooms
             self.tableView.reloadData()
         }) { (error) -> () in

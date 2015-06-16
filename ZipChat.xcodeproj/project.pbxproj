@@ -183,13 +183,13 @@
 		ED10CB9D1A3E71DD00AE1AF9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8BE218E21AC1FEEE006D591D /* LoginController.swift */,
 				8B4417291B000BA6004D6A7F /* CreateChatController.swift */,
 				8BD898F01AFEDB9400DEA384 /* ChatController.swift */,
 				8B0C8DA91AF9BD5F00D9FD32 /* MyChatsController.swift */,
 				8B0C8DA71AF9BA4C00D9FD32 /* NearByController.swift */,
 				8B81F5041B02D75700C7FC7D /* RequestsController.swift */,
 				8B0C8DA21AF9B28C00D9FD32 /* HomeController.swift */,
-				8BE218E21AC1FEEE006D591D /* LoginController.swift */,
 				8BE218E11AC1FEEE006D591D /* ZipChat-Bridging-Header.h */,
 			);
 			path = Controller;

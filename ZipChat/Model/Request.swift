@@ -79,7 +79,7 @@ class Request: NSObject {
     class func getRequestStatus(receiverId: Int, success:((status: RequestStatus)->())?, failure:((error: NSError)->())?) {
         let requestManager = RequestManager.sharedManager
         let clientManager = ClientManager.sharedManager
-        requestManager.operationManager.GET("\(RequestsEndPoint)/status", parameters: ["senderId":clientManager.user.userId, "receiverId":receiverId], success: { (operation, response) -> Void in
+        requestManager.operationManager.GET("\(RequestsEndPoint)/status", parameters: ["senderId":clientManager.user!.userId, "receiverId":receiverId], success: { (operation, response) -> Void in
             if let statusString = response as? String {
                 if let status = RequestStatus(rawValue: statusString) {
                     success?(status: status)
@@ -103,7 +103,7 @@ class Request: NSObject {
     class func sendRequest(receiverId: Int, success:((request: Request)->())?, failure:((error: NSError)->())?) {
         let requestManager = RequestManager.sharedManager
         let clientManager = ClientManager.sharedManager
-        requestManager.operationManager.POST(RequestsEndPoint, parameters: ["sender":clientManager.user.userId, "receiver":receiverId], success: { (operation, response) -> Void in
+        requestManager.operationManager.POST(RequestsEndPoint, parameters: ["sender":clientManager.user!.userId, "receiver":receiverId], success: { (operation, response) -> Void in
             if let requestData = response as? [String:AnyObject] {
                 success?(request: Request(dictionary:requestData))
             }

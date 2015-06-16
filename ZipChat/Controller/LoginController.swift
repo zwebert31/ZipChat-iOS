@@ -15,30 +15,35 @@ class LoginController: UIViewController, FBLoginViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginView?.delegate = self;
-        self.loginView?.readPermissions = ["public_profile", "user_friends"];
+        self.loginView?.readPermissions = ["public_profile"];
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.loginView?.delegate = self;
         self.navigationController?.navigationBarHidden = true;
     }
 
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
-        loginView.delegate = nil
+        self.loginView?.delegate = nil
         let clientManager: ClientManager = ClientManager.sharedManager
-        clientManager.user.name = user.name
-        clientManager.user.facebookId = user.objectID.toInt()
-        if clientManager.userId == nil {
-            User.createUserWithSuccess({ (userId) -> () in
-                clientManager.userId = userId
-                clientManager.user.userId = userId
+       
+        let accessToken = FBSession.activeSession().accessTokenData.accessToken
+        if let user = clientManager.user {
+            User.authenticateUserWithSuccess(accessToken, success: { (authToken) -> () in
+                clientManager.user?.authToken = authToken
+                clientManager.saveUser()
                 self.performSegueWithIdentifier("showHome", sender: self)
-                }, failure: { (error) -> () in
-                    NSLog(error.localizedDescription)
-            })
+            }, failure: { (error) -> () in
+                NSLog(error.localizedDescription)
+            })    
         } else {
-            clientManager.user.userId = clientManager.userId
-            self.performSegueWithIdentifier("showHome", sender: self)
+            User.createUserWithSuccess(accessToken, success: { (user) -> () in
+                clientManager.user = user
+                self.performSegueWithIdentifier("showHome", sender: self)
+            }, failure: { (error) -> () in
+                NSLog(error.localizedDescription)
+            })
         }
     }
 }

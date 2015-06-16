@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
+        ClientManager.sharedManager.loadUser()
+        
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: (.Badge | .Sound | .Alert), categories: nil)
         application.registerUserNotificationSettings(settings)
@@ -22,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.backgroundColor = UIColor.whiteColor()
         
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication)
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {

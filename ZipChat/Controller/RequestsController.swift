@@ -26,7 +26,7 @@ class RequestsController: UITableViewController, UITableViewDelegate, UITableVie
     //MARK: - Requests
     func updateRequests() {
         let clientManager = ClientManager.sharedManager
-        Request.getRequestsForReceiver(clientManager.user.userId, success: { (requests) -> () in
+        Request.getRequestsForReceiver(clientManager.user!.userId, success: { (requests) -> () in
             self.requests = requests
             self.tableView.reloadData()
             }) { (error) -> () in
