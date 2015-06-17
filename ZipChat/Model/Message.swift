@@ -38,7 +38,7 @@ class Message: NSObject {
         let clientManager = ClientManager.sharedManager
         let requestManager = RequestManager.sharedManager
         
-        let endpoint = "\(RoomsEndPoint)/\(roomId)/\(MessagesEndPoint)"
+        let endpoint = "\(PublicRoomsEndPoint)/\(roomId)/\(MessagesEndPoint)"
         NSLog(endpoint)
         requestManager.operationManager.GET(endpoint, parameters:["limit":100, "offset":0], success: { (operation, response) -> Void in
             var messages = [Message]()

@@ -48,6 +48,10 @@ class RequestManager: NSObject {
         }
     }
     
+    func setAuthToken(token: String?) {
+        _operationManager?.requestSerializer.setValue(token, forHTTPHeaderField: "X-Auth-Token")
+    }
+    
     class func jsonString(dictionary:[String:AnyObject]) -> String {
         if NSJSONSerialization.isValidJSONObject(dictionary) {
             if let data = NSJSONSerialization.dataWithJSONObject(dictionary, options: nil, error: nil) {

@@ -11,18 +11,6 @@ import UIKit
 private let manager = ClientManager()
 
 class ClientManager: NSObject {
-    
-    var userId: Int?
-    {
-        set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "userId")
-        }
-        
-        get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("userId") as? Int
-        }
-    }
-    
     var user: User? {
         didSet {
             self.saveUser()
@@ -45,5 +33,4 @@ class ClientManager: NSObject {
     class var sharedManager: ClientManager {
         return manager
     }
-    
 }

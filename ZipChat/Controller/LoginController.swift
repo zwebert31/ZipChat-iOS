@@ -27,12 +27,14 @@ class LoginController: UIViewController, FBLoginViewDelegate {
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
         self.loginView?.delegate = nil
         let clientManager: ClientManager = ClientManager.sharedManager
-       
+        let requestManager: RequestManager = RequestManager.sharedManager
+        
         let accessToken = FBSession.activeSession().accessTokenData.accessToken
         if let user = clientManager.user {
             User.authenticateUserWithSuccess(accessToken, success: { (authToken) -> () in
                 clientManager.user?.authToken = authToken
                 clientManager.saveUser()
+                requestManager.setAuthToken(authToken)
                 self.performSegueWithIdentifier("showHome", sender: self)
             }, failure: { (error) -> () in
                 NSLog(error.localizedDescription)
@@ -40,6 +42,7 @@ class LoginController: UIViewController, FBLoginViewDelegate {
         } else {
             User.createUserWithSuccess(accessToken, success: { (user) -> () in
                 clientManager.user = user
+                requestManager.setAuthToken(user.authToken)
                 self.performSegueWithIdentifier("showHome", sender: self)
             }, failure: { (error) -> () in
                 NSLog(error.localizedDescription)

@@ -40,7 +40,7 @@ class PrivateRoom: Room {
     
     func getOtherUser() -> User? {
         let clientManager = ClientManager.sharedManager
-        let userId = clientManager.userId
+        let userId = clientManager.user?.userId
         if sender.userId == userId {
             return receiver
         } else if receiver.userId == userId {

@@ -31,13 +31,20 @@ class ChatController: SLKTextViewController, UITableViewDelegate, UITableViewDat
             self.messages = messages
             self.tableView.reloadData()
         }) { (error) -> () in
-            
+            NSLog(error.localizedDescription)
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.joinRoom(room.roomId, userId: ClientManager.sharedManager.userId ?? -1)
+        if let userId = ClientManager.sharedManager.user?.userId,
+           let authToken = ClientManager.sharedManager.user?.authToken
+        {
+            self.joinRoom(room.roomId, userId: userId, authToken: authToken)
+        } else {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -45,9 +52,9 @@ class ChatController: SLKTextViewController, UITableViewDelegate, UITableViewDat
         self.socket.close()
     }
     
-    func joinRoom(roomId: Int, userId: Int) {
+    func joinRoom(roomId: Int, userId: Int, authToken: String) {
         let baseUrl = EnvironmentManager.sharedManager.baseUrl?.stringByReplacingOccurrencesOfString("http://", withString: "ws://") ?? ""
-        if let url = NSURL(string:"\(baseUrl)/\(RoomsEndPoint)/\(roomId)/\(ChatEndPoint)?userId=\(userId)") {
+        if let url = NSURL(string:"\(baseUrl)/\(PublicRoomsEndPoint)/\(roomId)/\(ChatEndPoint)?userId=\(userId)&authToken=\(authToken)") {
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "GET"
             self.socket = SRWebSocket(URLRequest: request)
