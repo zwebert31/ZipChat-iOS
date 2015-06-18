@@ -5,6 +5,10 @@ class PublicRoom: Room {
     var name: String = ""
     var location: CLLocation = CLLocation()
     
+    override var isPublic: Bool {
+        return true
+    }
+    
     override init(dictionary:[String:AnyObject]) {
         super.init(dictionary:dictionary)
         

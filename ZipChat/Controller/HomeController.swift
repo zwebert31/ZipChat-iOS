@@ -58,9 +58,15 @@ class HomeController: UITabBarController, CLLocationManagerDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showChat" {
-            if let room = sender as? Room {
-                if let vc = segue.destinationViewController as? ChatController {
+        if segue.identifier == "showPublicChat" {
+            if let room = sender as? PublicRoom {
+                if let vc = segue.destinationViewController as? PublicChatController {
+                    vc.room = room
+                }
+            }
+        } else if segue.identifier == "showPrivateChat" {
+            if let room = sender as? PrivateRoom {
+                if let vc = segue.destinationViewController as? PublicChatController {
                     vc.room = room
                 }
             }
@@ -68,7 +74,11 @@ class HomeController: UITabBarController, CLLocationManagerDelegate {
     }
     
     func showChat(room: Room) {
-        self.performSegueWithIdentifier("showChat", sender: room)
+        if room.isPublic {
+            self.performSegueWithIdentifier("showPublicChat", sender: room)
+        } else if room.isKindOfClass(PrivateRoom) {
+            self.performSegueWithIdentifier("showPrivateChat", sender: room)
+        }
     }
     
     func addChatRoom(sender: AnyObject) {

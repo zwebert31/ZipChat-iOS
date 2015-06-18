@@ -10,8 +10,8 @@ import UIKit
 class ChatController: SLKTextViewController, UITableViewDelegate, UITableViewDataSource, SRWebSocketDelegate {
     
     var messages: [Message] = []
-    var room: Room!
     var socket: SRWebSocket!
+    var room: Room!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +24,10 @@ class ChatController: SLKTextViewController, UITableViewDelegate, UITableViewDat
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        //self.navigationItem.title = room.name
+        self.textInputbar.leftButton.setImage(UIImage(named: "nearby"), forState: .Normal)
         
         //Load chat history
-        Message.getMessagesForRoomId(room.roomId, success: { (messages) -> () in
-            self.messages = messages
-            self.tableView.reloadData()
-        }) { (error) -> () in
-            NSLog(error.localizedDescription)
-        }
+        self.loadMessages()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,15 +48,11 @@ class ChatController: SLKTextViewController, UITableViewDelegate, UITableViewDat
     }
     
     func joinRoom(roomId: Int, userId: Int, authToken: String) {
-        let baseUrl = EnvironmentManager.sharedManager.baseUrl?.stringByReplacingOccurrencesOfString("http://", withString: "ws://") ?? ""
-        if let url = NSURL(string:"\(baseUrl)/\(PublicRoomsEndPoint)/\(roomId)/\(ChatEndPoint)?userId=\(userId)&authToken=\(authToken)") {
-            let request = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "GET"
-            self.socket = SRWebSocket(URLRequest: request)
-            self.socket.delegate = self;
-            self.socket.open()
-        }
-        
+        assertionFailure("Implement join room in subclass")
+    }
+    
+    func loadMessages() {
+        assertionFailure("Implement load messages in subclass")
     }
     
     //MARK: - Table view

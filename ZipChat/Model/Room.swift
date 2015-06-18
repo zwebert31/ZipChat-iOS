@@ -11,6 +11,9 @@ import UIKit
 class Room: NSObject {
     var roomId: Int = -1
     var lastActivity: Int = 0
+    var isPublic: Bool {
+        return true
+    }
     
     let timeFormatter = TTTTimeIntervalFormatter()
     

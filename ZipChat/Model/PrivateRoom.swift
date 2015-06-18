@@ -15,6 +15,10 @@ class PrivateRoom: Room {
     var receiverInRoom: Bool!
     var request: Request!
     
+    override var isPublic: Bool {
+        return false
+    }
+    
     override init(dictionary:[String:AnyObject]) {
         super.init(dictionary: dictionary)
         if let sender = dictionary["sender"] as? [String:AnyObject] {

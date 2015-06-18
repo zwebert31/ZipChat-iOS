@@ -35,6 +35,8 @@
 		8BE218EB1AC3AD08006D591D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE218EA1AC3AD08006D591D /* User.swift */; };
 		8BE218ED1AC3B37A006D591D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE218EC1AC3B37A006D591D /* Extensions.swift */; };
 		8BE9A7E91A744E2A002ABF0C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE9A7E81A744E2A002ABF0C /* MapKit.framework */; };
+		8BF5654C1B325EF900D3987E /* PublicChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF5654B1B325EF900D3987E /* PublicChatController.swift */; };
+		8BF5654E1B32610700D3987E /* PrivateChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF5654D1B32610700D3987E /* PrivateChatController.swift */; };
 		ED5422911A3B7E06003FC731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED54228F1A3B7E06003FC731 /* Main.storyboard */; };
 		ED5422931A3B7E06003FC731 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED5422921A3B7E06003FC731 /* Images.xcassets */; };
 		ED5422961A3B7E06003FC731 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED5422941A3B7E06003FC731 /* LaunchScreen.xib */; };
@@ -83,6 +85,8 @@
 		8BE218EA1AC3AD08006D591D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8BE218EC1AC3B37A006D591D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = ZipChat/Extensions.swift; sourceTree = SOURCE_ROOT; };
 		8BE9A7E81A744E2A002ABF0C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8BF5654B1B325EF900D3987E /* PublicChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicChatController.swift; sourceTree = "<group>"; };
+		8BF5654D1B32610700D3987E /* PrivateChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateChatController.swift; sourceTree = "<group>"; };
 		DD3143D18FC2E4E027390DF5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED5422821A3B7E06003FC731 /* ZipChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZipChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED5422861A3B7E06003FC731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				8BE218E21AC1FEEE006D591D /* LoginController.swift */,
 				8B4417291B000BA6004D6A7F /* CreateChatController.swift */,
 				8BD898F01AFEDB9400DEA384 /* ChatController.swift */,
+				8BF5654B1B325EF900D3987E /* PublicChatController.swift */,
+				8BF5654D1B32610700D3987E /* PrivateChatController.swift */,
 				8B0C8DA91AF9BD5F00D9FD32 /* MyChatsController.swift */,
 				8B0C8DA71AF9BA4C00D9FD32 /* NearByController.swift */,
 				8B81F5041B02D75700C7FC7D /* RequestsController.swift */,
@@ -423,7 +429,9 @@
 				8B0C8DA81AF9BA4C00D9FD32 /* NearByController.swift in Sources */,
 				8BD898F51AFEE29900DEA384 /* Message.swift in Sources */,
 				8B81F5051B02D75700C7FC7D /* RequestsController.swift in Sources */,
+				8BF5654E1B32610700D3987E /* PrivateChatController.swift in Sources */,
 				8BD898F31AFEE09400DEA384 /* ChatMessageCell.swift in Sources */,
+				8BF5654C1B325EF900D3987E /* PublicChatController.swift in Sources */,
 				8BE218ED1AC3B37A006D591D /* Extensions.swift in Sources */,
 				8BB7D5801AFEC901008DD184 /* PublicRoomCell.swift in Sources */,
 			);
