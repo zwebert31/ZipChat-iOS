@@ -7,11 +7,18 @@
 //
 import UIKit
 
+enum ChatEvent: String {
+    case Message = "talk"
+    case Favorite = "favorite"
+    case Join = "join"
+}
+
 class ChatController: SLKTextViewController, UITableViewDelegate, UITableViewDataSource, SRWebSocketDelegate {
     
     var messages: [Message] = []
     var socket: SRWebSocket!
     var room: Room!
+    let user: User? = ClientManager.sharedManager.user
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,16 +31,14 @@ class ChatController: SLKTextViewController, UITableViewDelegate, UITableViewDat
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.textInputbar.leftButton.setImage(UIImage(named: "nearby"), forState: .Normal)
-        
         //Load chat history
         self.loadMessages()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if let userId = ClientManager.sharedManager.user?.userId,
-           let authToken = ClientManager.sharedManager.user?.authToken
+        if let userId = self.user?.userId,
+           let authToken = self.user?.authToken
         {
             self.joinRoom(room.roomId, userId: userId, authToken: authToken)
         } else {
@@ -106,19 +111,40 @@ class ChatController: SLKTextViewController, UITableViewDelegate, UITableViewDat
     }
     
     func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject!) {
+        
         NSLog(message.description)
-        if let eventString = message as? String {
+        if let eventString = message as? String
+        {
             let eventDict = RequestManager.dictionary(eventString)
-            if eventDict["event"] as? String == "talk" {
-                if let messageString = eventDict["message"] as? String {
-                    let messageDict = RequestManager.dictionary(messageString)
-                    if messageDict["sender"] != nil {
-                        let messageObject = Message(dictionary:messageDict)
-                        self.messages.insert(messageObject, atIndex:0)
-                        self.tableView.reloadData()
+            if let eventTypeString = eventDict["event"] as? String,
+               let event = ChatEvent(rawValue:eventTypeString) {
+                switch event {
+                case .Message:
+                    if let messageString = eventDict["message"] as? String {
+                        self.handleMessageEvent(RequestManager.dictionary(messageString))
                     }
+                default:
+                    return
                 }
             }
+            
         }
+    }
+    
+    func handleMessageEvent(messageDict:[String:AnyObject]) {
+        if messageDict["sender"] != nil {
+            let messageObject = Message(dictionary:messageDict)
+            self.messages.insert(messageObject, atIndex:0)
+            self.tableView.reloadData()
+        }
+    }
+    
+    //MARK: - Helper Methods
+    
+    func setLeftButtonImage(image: UIImage) {
+        self.textInputbar.leftButton.setImage(image, forState: .Normal)
+        self.textInputbar.leftButton.imageView?.layer.borderColor = ColorManager.blueColor().CGColor
+        self.textInputbar.leftButton.imageView?.layer.borderWidth = 2
+        self.textInputbar.leftButton.imageView?.layer.cornerRadius = image.size.width/2
     }
 }

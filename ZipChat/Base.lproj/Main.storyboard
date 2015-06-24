@@ -15,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="86I-iK-Uvx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YaL-eP-Snz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t0a-li-j0p" customClass="SMFBProfileImageView">
@@ -59,9 +59,9 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="C8x-We-6Md"/>
+                                <exclude reference="A9O-sS-WT3"/>
                                 <exclude reference="Arh-Aw-JQJ"/>
                                 <exclude reference="QwY-fV-MuX"/>
-                                <exclude reference="A9O-sS-WT3"/>
                             </mask>
                         </variation>
                     </view>
@@ -73,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0x-TI-DaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2069" y="1317"/>
+            <point key="canvasLocation" x="2028" y="1450"/>
         </scene>
         <!--Create Chat Controller-->
         <scene sceneID="XpY-V1-ZLX">
@@ -398,6 +398,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="uH4-Jt-08E" kind="show" identifier="showProfile" id="V3G-ts-wZr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xMr-rF-kWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -718,6 +721,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="uH4-Jt-08E" kind="show" identifier="showProfile" id="8ew-RF-DKn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dF2-m6-iGp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -730,4 +736,7 @@
         <image name="logo_transparent" width="556" height="313"/>
         <image name="nearby" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="8ew-RF-DKn"/>
+    </inferredMetricsTieBreakers>
 </document>

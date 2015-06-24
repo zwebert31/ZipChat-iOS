@@ -1,12 +1,13 @@
 //
-//  Extensions.swift
+//  AnonymousUser.swift
 //  ZipChat
 //
-//  Created by Zachary Webert on 3/25/15.
+//  Created by Zachary Webert on 6/17/15.
 //  Copyright (c) 2015 Zachary Webert. All rights reserved.
 //
 
 import UIKit
 
-extension NSObject {
+class AnonymousUser: User {
+   
 }
