@@ -34,13 +34,13 @@ class Message: NSObject {
         }
     }
     
-    class func getMessagesForRoomId(roomId: Int, success:((messages: [Message])->())?, failure:((error: NSError)->())?) {
+    class func getMessagesForRoom(room: Room, limit: Int, offset: Int, success:((messages: [Message])->())?, failure:((error: NSError)->())?) {
         let clientManager = ClientManager.sharedManager
         let requestManager = RequestManager.sharedManager
         
-        let endpoint = "\(PublicRoomsEndPoint)/\(roomId)/\(MessagesEndPoint)"
+        let endpoint = "\(room.isPublic ? PublicRoomsEndPoint : PrivateRoomsEndPoint)/\(room.roomId)/\(MessagesEndPoint)"
         NSLog(endpoint)
-        requestManager.operationManager.GET(endpoint, parameters:["limit":100, "offset":0], success: { (operation, response) -> Void in
+        requestManager.operationManager.GET(endpoint, parameters:["limit":limit, "offset":offset], success: { (operation, response) -> Void in
             var messages = [Message]()
             for messageData in (response as? [[String:AnyObject]] ?? []) {
                 let message = Message(dictionary: messageData)

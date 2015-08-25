@@ -40,7 +40,7 @@ class ChatController: SLKTextViewController, UITableViewDelegate, UITableViewDat
         if let userId = self.user?.userId,
            let authToken = self.user?.authToken
         {
-            self.joinRoom(room.roomId, userId: userId, authToken: authToken)
+            self.joinRoom(room, userId: userId, authToken: authToken)
         } else {
             self.navigationController?.popViewControllerAnimated(true)
         }
@@ -52,12 +52,25 @@ class ChatController: SLKTextViewController, UITableViewDelegate, UITableViewDat
         self.socket.close()
     }
     
-    func joinRoom(roomId: Int, userId: Int, authToken: String) {
-        assertionFailure("Implement join room in subclass")
+    func joinRoom(room: Room, userId: Int, authToken: String) {
+        let baseUrl = EnvironmentManager.sharedManager.baseUrl?.stringByReplacingOccurrencesOfString("http://", withString: "ws://") ?? ""
+        
+        if let url = NSURL(string:"\(baseUrl)/\(room.isPublic ? PublicRoomsEndPoint : PrivateRoomsEndPoint)/\(room.roomId)/\(ChatEndPoint)?userId=\(userId)&authToken=\(authToken)") {
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "GET"
+            self.socket = SRWebSocket(URLRequest: request)
+            self.socket.delegate = self;
+            self.socket.open()
+        }
     }
     
     func loadMessages() {
-        assertionFailure("Implement load messages in subclass")
+        Message.getMessagesForRoom(room, limit: 100, offset: 0, success: { (messages) -> () in
+            self.messages = messages
+            self.tableView.reloadData()
+            }) { (error) -> () in
+                NSLog(error.localizedDescription)
+        }
     }
     
     //MARK: - Table view

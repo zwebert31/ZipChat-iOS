@@ -66,7 +66,7 @@ class HomeController: UITabBarController, CLLocationManagerDelegate {
             }
         } else if segue.identifier == "showPrivateChat" {
             if let room = sender as? PrivateRoom {
-                if let vc = segue.destinationViewController as? PublicChatController {
+                if let vc = segue.destinationViewController as? PrivateChatController {
                     vc.room = room
                 }
             }
@@ -76,7 +76,7 @@ class HomeController: UITabBarController, CLLocationManagerDelegate {
     func showChat(room: Room) {
         if room.isPublic {
             self.performSegueWithIdentifier("showPublicChat", sender: room)
-        } else if room.isKindOfClass(PrivateRoom) {
+        } else {
             self.performSegueWithIdentifier("showPrivateChat", sender: room)
         }
     }

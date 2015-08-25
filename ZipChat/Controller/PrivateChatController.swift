@@ -21,4 +21,6 @@ class PrivateChatController: ChatController {
         // Dispose of any resources that can be recreated.
     }
 
+    //MARK: - Messages
+    
 }
